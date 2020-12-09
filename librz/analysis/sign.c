@@ -1359,7 +1359,11 @@ RZ_API void rz_sign_close_match_free(RzSignCloseMatch *match) {
 }
 
 RZ_API RzList *rz_sign_find_closest_sig(RzAnalysis *a, RzSignItem *it, int count, double score_threshold) {
-	rz_return_val_if_fail (a && it && count > 0 && score_threshold >= 0 && score_threshold <= 1, NULL);
+	rz_return_val_if_fail (a, NULL);
+	rz_return_val_if_fail (it, NULL);
+	rz_return_val_if_fail (count > 0, NULL);
+	rz_return_val_if_fail (score_threshold >= 0, NULL);
+	rz_return_val_if_fail (score_threshold <= 1, NULL);
 
 	// need at least one acceptable signature type
 	rz_return_val_if_fail (it->bytes || it->graph, NULL);
