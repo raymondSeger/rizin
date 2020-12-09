@@ -85,5 +85,5 @@ cache:
 script:
   - export PR_NAME=$(echo $TRAVIS_PULL_REQUEST_SLUG | cut -d'/' -f1)
   - |
-    pip3 install 'git+https://github.com/rizinorg/rz-pipe#egg=rz-pipe&subdirectory=python'
+    pip3 install 'git+https://github.com/rizinorg/rz-pipe#egg=rzpipe&subdirectory=python'
     $SHELL travis-script
