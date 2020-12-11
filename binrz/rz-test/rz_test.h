@@ -5,7 +5,7 @@
 
 #include <rz_util.h>
 
-#if defined (__FreeBSD__) || defined (__FreeBSD_kernel__)
+#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
 #define RZ_TEST_OS "freebsd"
 #elif defined(__linux__)
 #define RZ_TEST_OS "linux"
@@ -25,7 +25,7 @@
 #define RZ_TEST_ARCH "unknown"
 #endif
 
-#define RZ_TEST_ARCH_OS RZ_TEST_OS"-"RZ_TEST_ARCH
+#define RZ_TEST_ARCH_OS RZ_TEST_OS "-" RZ_TEST_ARCH
 
 typedef struct rz_test_cmd_test_string_record {
 	char *value;
@@ -166,7 +166,7 @@ typedef struct rz_test_test_result_info_t {
 	ut64 time_elapsed;
 	union {
 		RzTestProcessOutput *proc_out; // for test->type == RZ_TEST_TYPE_CMD, RZ_TEST_TYPE_JSON or RZ_TEST_TYPE_FUZZ
-		RzAsmTestOutput *asm_out;  // for test->type == RZ_TEST_TYPE_ASM
+		RzAsmTestOutput *asm_out; // for test->type == RZ_TEST_TYPE_ASM
 	};
 } RzTestResultInfo;
 
@@ -194,8 +194,8 @@ RZ_API void rz_test_subprocess_fini(void);
 RZ_API void rz_test_subprocess_lock(void);
 RZ_API void rz_test_subprocess_unlock(void);
 RZ_API RzTestSubprocess *rz_test_subprocess_start(
-		const char *file, const char *args[], size_t args_size,
-		const char *envvars[], const char *envvals[], size_t env_size);
+	const char *file, const char *args[], size_t args_size,
+	const char *envvars[], const char *envvals[], size_t env_size);
 RZ_API bool rz_test_subprocess_wait(RzTestSubprocess *proc, ut64 timeout_ms);
 RZ_API void rz_test_subprocess_free(RzTestSubprocess *proc);
 

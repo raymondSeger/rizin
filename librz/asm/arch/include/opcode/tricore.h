@@ -22,93 +22,90 @@ Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 
 /* Supported TriCore and PCP instruction set architectures.  */
 
-typedef enum _tricore_opcode_arch_val
-{
-  TRICORE_GENERIC = 0x00000000,
-  TRICORE_RIDER_A = 0x00000001,
-  TRICORE_RIDER_B = 0x00000002,
-  TRICORE_RIDER_D = TRICORE_RIDER_B,
-  TRICORE_V2      = 0x00000004,
-  TRICORE_PCP     = 0x00000010,
-  TRICORE_PCP2    = 0x00000020
+typedef enum _tricore_opcode_arch_val {
+	TRICORE_GENERIC = 0x00000000,
+	TRICORE_RIDER_A = 0x00000001,
+	TRICORE_RIDER_B = 0x00000002,
+	TRICORE_RIDER_D = TRICORE_RIDER_B,
+	TRICORE_V2 = 0x00000004,
+	TRICORE_PCP = 0x00000010,
+	TRICORE_PCP2 = 0x00000020
 } tricore_isa;
 
-
-#define bfd_mach_rider_a       0x0001
-#define bfd_mach_rider_b       0x0002
-#define bfd_mach_rider_c       0x0003
-#define bfd_mach_rider_2       0x0004
-#define bfd_mach_rider_d       0x0002
-#define bfd_mach_rider_mask    0x000f
+#define bfd_mach_rider_a    0x0001
+#define bfd_mach_rider_b    0x0002
+#define bfd_mach_rider_c    0x0003
+#define bfd_mach_rider_2    0x0004
+#define bfd_mach_rider_d    0x0002
+#define bfd_mach_rider_mask 0x000f
 
 #define SEC_ARCH_BIT_0 0x008
 /* Some handy definitions for upward/downward compatibility of insns.  */
 
-#define TRICORE_V2_UP      TRICORE_V2
+#define TRICORE_V2_UP	   TRICORE_V2
 #define TRICORE_RIDER_D_UP (TRICORE_RIDER_D | TRICORE_V2_UP)
 #define TRICORE_RIDER_B_UP (TRICORE_RIDER_B | TRICORE_RIDER_D_UP)
 
 #define TRICORE_RIDER_B_DN TRICORE_RIDER_B
 #define TRICORE_RIDER_D_DN (TRICORE_RIDER_D | TRICORE_RIDER_B_DN)
-#define TRICORE_V2_DN      (TRICORE_V2 | TRICORE_RIDER_D_DN)
+#define TRICORE_V2_DN	   (TRICORE_V2 | TRICORE_RIDER_D_DN)
 
 /* The various instruction formats of the TriCore architecture.  */
 
-typedef enum _tricore_fmt
-{
-  /* 32-bit formats */
+typedef enum _tricore_fmt {
+	/* 32-bit formats */
 
-  TRICORE_FMT_ABS,
-  TRICORE_FMT_ABSB,
-  TRICORE_FMT_B,
-  TRICORE_FMT_BIT,
-  TRICORE_FMT_BO,
-  TRICORE_FMT_BOL,
-  TRICORE_FMT_BRC,
-  TRICORE_FMT_BRN,
-  TRICORE_FMT_BRR,
-  TRICORE_FMT_RC,
-  TRICORE_FMT_RCPW,
-  TRICORE_FMT_RCR,
-  TRICORE_FMT_RCRR,
-  TRICORE_FMT_RCRW,
-  TRICORE_FMT_RLC,
-  TRICORE_FMT_RR,
-  TRICORE_FMT_RR1,
-  TRICORE_FMT_RR2,
-  TRICORE_FMT_RRPW,
-  TRICORE_FMT_RRR,
-  TRICORE_FMT_RRR1,
-  TRICORE_FMT_RRR2,
-  TRICORE_FMT_RRRR,
-  TRICORE_FMT_RRRW,
-  TRICORE_FMT_SYS,
+	TRICORE_FMT_ABS,
+	TRICORE_FMT_ABSB,
+	TRICORE_FMT_B,
+	TRICORE_FMT_BIT,
+	TRICORE_FMT_BO,
+	TRICORE_FMT_BOL,
+	TRICORE_FMT_BRC,
+	TRICORE_FMT_BRN,
+	TRICORE_FMT_BRR,
+	TRICORE_FMT_RC,
+	TRICORE_FMT_RCPW,
+	TRICORE_FMT_RCR,
+	TRICORE_FMT_RCRR,
+	TRICORE_FMT_RCRW,
+	TRICORE_FMT_RLC,
+	TRICORE_FMT_RR,
+	TRICORE_FMT_RR1,
+	TRICORE_FMT_RR2,
+	TRICORE_FMT_RRPW,
+	TRICORE_FMT_RRR,
+	TRICORE_FMT_RRR1,
+	TRICORE_FMT_RRR2,
+	TRICORE_FMT_RRRR,
+	TRICORE_FMT_RRRW,
+	TRICORE_FMT_SYS,
 
-  /* 16-bit formats */
+	/* 16-bit formats */
 
-  TRICORE_FMT_SB,
-  TRICORE_FMT_SBC,
-  TRICORE_FMT_SBR,
-  TRICORE_FMT_SBRN,
-  TRICORE_FMT_SC,
-  TRICORE_FMT_SLR,
-  TRICORE_FMT_SLRO,
-  TRICORE_FMT_SR,
-  TRICORE_FMT_SRC,
-  TRICORE_FMT_SRO,
-  TRICORE_FMT_SRR,
-  TRICORE_FMT_SRRS,
-  TRICORE_FMT_SSR,
-  TRICORE_FMT_SSRO,
-  TRICORE_FMT_MAX /* Sentinel.  */
+	TRICORE_FMT_SB,
+	TRICORE_FMT_SBC,
+	TRICORE_FMT_SBR,
+	TRICORE_FMT_SBRN,
+	TRICORE_FMT_SC,
+	TRICORE_FMT_SLR,
+	TRICORE_FMT_SLRO,
+	TRICORE_FMT_SR,
+	TRICORE_FMT_SRC,
+	TRICORE_FMT_SRO,
+	TRICORE_FMT_SRR,
+	TRICORE_FMT_SRRS,
+	TRICORE_FMT_SSR,
+	TRICORE_FMT_SSRO,
+	TRICORE_FMT_MAX /* Sentinel.  */
 } tricore_fmt;
 
 #if defined(__STDC__) || defined(ALMOST_STDC)
-# define F(x) TRICORE_FMT_ ## x
+#define F(x) TRICORE_FMT_##x
 #elif defined(_MSC_VER)
-# define F(x) TRICORE_FMT_ ## x
+#define F(x) TRICORE_FMT_##x
 #else
-# define F(x) TRICORE_FMT_/**/x
+#define F(x) TRICORE_FMT_ /**/ x
 #endif
 
 /* Opcode masks for the instruction formats above.  */
@@ -154,23 +151,22 @@ extern unsigned long tricore_mask_ssr;
 extern unsigned long tricore_mask_ssro;
 extern unsigned long tricore_opmask[];
 
-extern void tricore_init_arch_vars PARAMS ((unsigned long));
+extern void tricore_init_arch_vars PARAMS((unsigned long));
 
 /* This structure describes TriCore opcodes.  */
 
-struct tricore_opcode
-{
-  const char *name;		/* The opcode's mnemonic name.  */
-  const int len32;		/* 1 if it's a 32-bit insn.  */
-  const unsigned long opcode;	/* The binary code of this opcode.  */
-  const unsigned long lose;	/* Mask for bits that must not be set.  */
-  const tricore_fmt format;	/* The instruction format.  */
-  const int nr_operands;	/* The number of operands.  */
-  const char *args;	/* Kinds of operands (see below).  */
-  const char *fields;	/* Where to put the operands (see below).  */
-  const tricore_isa isa;	/* Instruction set architecture.  */
-  int insind;			/* The insn's index (computed at runtime).  */
-  int inslast;			/* Index of last insn w/ that name (dito).  */
+struct tricore_opcode {
+	const char *name; /* The opcode's mnemonic name.  */
+	const int len32; /* 1 if it's a 32-bit insn.  */
+	const unsigned long opcode; /* The binary code of this opcode.  */
+	const unsigned long lose; /* Mask for bits that must not be set.  */
+	const tricore_fmt format; /* The instruction format.  */
+	const int nr_operands; /* The number of operands.  */
+	const char *args; /* Kinds of operands (see below).  */
+	const char *fields; /* Where to put the operands (see below).  */
+	const tricore_isa isa; /* Instruction set architecture.  */
+	int insind; /* The insn's index (computed at runtime).  */
+	int inslast; /* Index of last insn w/ that name (dito).  */
 };
 
 extern struct tricore_opcode tricore_opcodes[];
@@ -179,19 +175,18 @@ extern unsigned long tricore_opmask[];
 
 /* This structure describes PCP/PCP2 opcodes.  */
 
-struct pcp_opcode
-{
-  const char *name;		/* The opcode's mnemonic name.  */
-  const int len32;		/* 1 if it's a 32-bit insn.  */
-  const unsigned long opcode;	/* The binary code of this opcode.  */
-  const unsigned long lose;	/* Mask for bits that must not be set.  */
-  const int fmt_group;		/* The group ID of the instruction format.  */
-  const int ooo;		/* 1 if operands may be given out of order.  */
-  const int nr_operands;	/* The number of operands.  */
-  const char *args;	/* Kinds of operands (see below),  */
-  const tricore_isa isa;	/* PCP instruction set architecture.  */
-  int insind;			/* The insn's index (computed at runtime).  */
-  int inslast;			/* Index of last insn w/ that name (dito).  */
+struct pcp_opcode {
+	const char *name; /* The opcode's mnemonic name.  */
+	const int len32; /* 1 if it's a 32-bit insn.  */
+	const unsigned long opcode; /* The binary code of this opcode.  */
+	const unsigned long lose; /* Mask for bits that must not be set.  */
+	const int fmt_group; /* The group ID of the instruction format.  */
+	const int ooo; /* 1 if operands may be given out of order.  */
+	const int nr_operands; /* The number of operands.  */
+	const char *args; /* Kinds of operands (see below),  */
+	const tricore_isa isa; /* PCP instruction set architecture.  */
+	int insind; /* The insn's index (computed at runtime).  */
+	int inslast; /* Index of last insn w/ that name (dito).  */
 };
 
 extern struct pcp_opcode pcp_opcodes[];
@@ -199,11 +194,10 @@ extern const int pcp_numopcodes;
 
 /* This structure describes TriCore core registers (SFRs).  */
 
-struct tricore_core_register
-{
-  const char *name;		/* The name of the register ($-prepended).  */
-  const unsigned long addr;	/* The memory address of the register.  */
-  const tricore_isa isa;	/* Instruction set architecture.  */
+struct tricore_core_register {
+	const char *name; /* The name of the register ($-prepended).  */
+	const unsigned long addr; /* The memory address of the register.  */
+	const tricore_isa isa; /* Instruction set architecture.  */
 };
 
 extern const struct tricore_core_register tricore_sfrs[];
@@ -306,7 +300,7 @@ extern const int tricore_numsfrs;
 #define FMT_RCPW_D	'1'
 #define FMT_RCPW_P	'2'
 #define FMT_RCPW_W	'3'
-#define FMT_RCPW_CONST4	'4'
+#define FMT_RCPW_CONST4 '4'
 #define FMT_RCPW_S1	'5'
 #define FMT_RCR_NONE	'0'
 #define FMT_RCR_D	'1'
@@ -316,17 +310,17 @@ extern const int tricore_numsfrs;
 #define FMT_RCRR_NONE	'0'
 #define FMT_RCRR_D	'1'
 #define FMT_RCRR_S3	'2'
-#define FMT_RCRR_CONST4	'3'
+#define FMT_RCRR_CONST4 '3'
 #define FMT_RCRR_S1	'4'
 #define FMT_RCRW_NONE	'0'
 #define FMT_RCRW_D	'1'
 #define FMT_RCRW_S3	'2'
 #define FMT_RCRW_W	'3'
-#define FMT_RCRW_CONST4	'4'
+#define FMT_RCRW_CONST4 '4'
 #define FMT_RCRW_S1	'5'
 #define FMT_RLC_NONE	'0'
 #define FMT_RLC_D	'1'
-#define FMT_RLC_CONST16	'2'
+#define FMT_RLC_CONST16 '2'
 #define FMT_RLC_S1	'3'
 #define FMT_RR_NONE	'0'
 #define FMT_RR_D	'1'
